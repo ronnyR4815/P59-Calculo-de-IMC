@@ -27,8 +27,7 @@ void VentanaPrincipal::on_btn_calcular_released()
     // Recibir los calculos y la clasificacion del IMC
     imc = calculoimc->calcular();
     ui->out_imc->setText(QString::number(imc, 'f', 2));
-
-    ui->out_pesoAc->setText(QString::number(imc, 'f', 2) + " kg");
+    ui->out_pesoAc->setText(QString::number(peso, 'f', 2) + " kg");
 
     guardar();
 }
@@ -47,12 +46,32 @@ void VentanaPrincipal::guardar()
         // Crear un "stream" de texto (flujo)
         QTextStream datos(&archivo);
 
-        QString info;
-        info = datos.readAll();
+        QString info = "", peso = "";
+        float pesoMax = 0.00, pesoAc = 0, pesoMin = 0.00;
 
-        datos << "Fecha: " << ui->in_fecha->text() << endl;
-        datos << "Peso: " << ui->in_peso->text() << endl;
-        datos << "Altura: " << ui->in_altura->text() << endl << endl;
+        while(!datos.atEnd()){
+            info = datos.readLine();
+            if(info.contains("Peso:")){
+                peso = datos.readLine();
+                // Buscar mayor y menor peso
+                pesoAc = peso.toFloat();
+
+                if(pesoAc > pesoMax){
+                    pesoMax = pesoAc;
+                }else if(pesoAc < pesoMax){
+                    pesoMin = pesoAc;
+                }
+            }
+        }
+
+        datos << "| Fecha: " << ui->in_fecha->text() << " |" << endl;
+        datos << "Peso: " << endl;
+        datos << ui->in_peso->text() << endl;
+        datos << "Altura: " << endl;
+        datos << ui->in_altura->text() << endl << endl;
+
+        ui->out_pesoMax->setText(QString::number(pesoMax) + " kg");
+        ui->out_pesoMin->setText(QString::number(pesoMin) + " kg");
 
         ui->statusbar->showMessage("Datos almacenados correctamente!", 3000);
     }else{
