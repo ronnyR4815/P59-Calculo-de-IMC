@@ -49,22 +49,65 @@ void VentanaPrincipal::clasificarImc(float imc, QString clasificacion)
     if(imc < 16){
         ui->out_clasificacion->setStyleSheet("color: rgb(176, 211, 205)");
         ui->out_bar->setValue(ui->out_bar->minimum()+1);
-        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(176, 211, 205);}"));
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar{\n"
+                                                        "border-radius: 25px;\n"
+                                                        "background-color: rgb(184, 184, 184);\n"
+                                                        "}\n"
+                                                        "QProgressBar::chunk{\n"
+                                                        "border-radius: 20px;\n"
+                                                        "background-color: rgb(176, 211, 205);\n"
+                                                        "}"));
     }else if(imc >= 16 && imc < 18.5){
         ui->out_clasificacion->setStyleSheet("color: rgb(76, 108, 148)");
-        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(76, 108, 148);}"));
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar{\n"
+                                                        "border-radius: 25px;\n"
+                                                        "background-color: rgb(184, 184, 184);\n"
+                                                        "}\n"
+                                                        "QProgressBar::chunk{\n"
+                                                        "border-radius: 20px;\n"
+                                                        "background-color: rgb(76, 108, 148);\n"
+                                                        "}"));
     }else if(imc >= 18.5 && imc < 25){
         ui->out_clasificacion->setStyleSheet("color: rgb(117, 221, 119)");
-        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(117, 221, 119);}"));
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar{\n"
+                                                        "border-radius: 25px;\n"
+                                                        "background-color: rgb(184, 184, 184);\n"
+                                                        "}\n"
+                                                        "QProgressBar::chunk{\n"
+                                                        "border-radius: 20px;\n"
+                                                        "background-color: rgb(117, 221, 119);\n"
+                                                        "}"));
     }else if(imc >= 25 && imc < 30){
         ui->out_clasificacion->setStyleSheet("color: rgb(220, 230, 130)");
-        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(220, 230, 130);}"));
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar{\n"
+                                                        "border-radius: 25px;\n"
+                                                        "background-color: rgb(184, 184, 184);\n"
+                                                        "}\n"
+                                                        "QProgressBar::chunk{\n"
+                                                        "border-radius: 20px;\n"
+                                                        "background-color: rgb(220, 230, 130);\n"
+                                                        "}"));
     }else if(imc >= 30 && imc < 40){
         ui->out_clasificacion->setStyleSheet("color: rgb(254, 181, 70)");
-        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(254, 181, 70);}"));
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar{\n"
+                                                        "border-radius: 25px;\n"
+                                                        "background-color: rgb(184, 184, 184);\n"
+                                                        "}\n"
+                                                        "QProgressBar::chunk{\n"
+                                                        "border-radius: 20px;\n"
+                                                        "background-color: rgb(254, 181, 70);\n"
+                                                        "}"));
     }else if(imc >= 40){
         ui->out_clasificacion->setStyleSheet("color: rgb(234, 68, 78)");
-        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(234, 68, 78);}"));
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar{\n"
+                                                        "border-radius: 25px;\n"
+                                                        "background-color: rgb(184, 184, 184);\n"
+                                                        "}\n"
+                                                        "QProgressBar::chunk{\n"
+                                                        "border-radius: 20px;\n"
+                                                        "background-color: rgb(234, 68, 78);\n"
+                                                        "}"));
+
         ui->out_bar->setValue(ui->out_bar->maximum());
     }
 

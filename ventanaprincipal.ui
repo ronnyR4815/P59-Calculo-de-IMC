@@ -444,7 +444,14 @@ border-color: rgb(196, 255, 210);</string>
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QProgressBar{
+border-radius: 25px;
+	background-color: rgb(184, 184, 184);
+}
+QProgressBar::chunk{
+border-radius: 10px;
+}
+</string>
      </property>
      <property name="minimum">
       <number>15</number>
@@ -521,7 +528,7 @@ border-color: rgb(196, 255, 210);</string>
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
