@@ -33,5 +33,6 @@ private:
     QString fecha;
 
     void guardar();
+    void clasificarImc(float imc, QString clasificacion);
 };
 #endif // VENTANAPRINCIPAL_H

@@ -188,7 +188,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Peso</string>
+         <string>Peso (kg)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -203,7 +203,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="in_peso"/>
+       <widget class="QDoubleSpinBox" name="in_peso">
+        <property name="maximum">
+         <double>200.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>5.000000000000000</double>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -229,7 +236,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Altura</string>
+         <string>Altura (m)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -244,7 +251,17 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="in_altura"/>
+       <widget class="QDoubleSpinBox" name="in_altura">
+        <property name="minimum">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>3.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.050000000000000</double>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -301,17 +318,22 @@
     <widget class="QDateEdit" name="in_fecha">
      <property name="geometry">
       <rect>
-       <x>168</x>
+       <x>138</x>
        <y>10</y>
-       <width>91</width>
+       <width>121</width>
        <height>21</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Nirmala UI</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">alternate-background-color: rgb(255, 255, 255);
-border-color: rgb(196, 255, 210);
-color: rgb(33, 33, 33);
-background-color: rgb(235, 235, 235);</string>
+      <string notr="true">background-color: rgb(213, 255, 224);
+color: rgb(30, 30, 30);
+border-color: rgb(196, 255, 210);</string>
      </property>
      <property name="readOnly">
       <bool>false</bool>
@@ -362,8 +384,8 @@ background-color: rgb(235, 235, 235);</string>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>12</y>
+       <x>120</x>
+       <y>60</y>
        <width>151</width>
        <height>16</height>
       </rect>
@@ -381,15 +403,15 @@ background-color: rgb(235, 235, 235);</string>
     <widget class="QLabel" name="out_imc">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>10</y>
-       <width>51</width>
-       <height>20</height>
+       <x>50</x>
+       <y>90</y>
+       <width>281</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <pointsize>30</pointsize>
        <weight>75</weight>
        <bold>true</bold>
        <underline>true</underline>
@@ -398,8 +420,63 @@ background-color: rgb(235, 235, 235);</string>
      <property name="text">
       <string>0.00</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
      <property name="wordWrap">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="out_bar">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>160</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="minimum">
+      <number>15</number>
+     </property>
+     <property name="maximum">
+      <number>36</number>
+     </property>
+     <property name="value">
+      <number>14</number>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
+     <property name="invertedAppearance">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="out_clasificacion">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>250</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Nirmala UI</family>
+       <pointsize>20</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>NA</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>

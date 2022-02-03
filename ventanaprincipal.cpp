@@ -9,6 +9,9 @@ VentanaPrincipal::VentanaPrincipal(QWidget *parent)
     this->altura = 0;
     this->peso = 0;
     this->fecha = "";
+
+    // Iniciar la etiqueta de clasificacion invisible
+    ui->out_clasificacion->setVisible(false);
 }
 
 VentanaPrincipal::~VentanaPrincipal()
@@ -20,16 +23,47 @@ void VentanaPrincipal::on_btn_calcular_released()
 {
     float imc;
     QString clasificacion;
+
     altura = ui->in_altura->text().toFloat();
     peso = ui->in_peso->text().toFloat();
     // Enviar los datos a la clase calculo
     calculoimc = new Calculoimc(peso, altura);
     // Recibir los calculos y la clasificacion del IMC
     imc = calculoimc->calcular();
+    clasificacion = calculoimc->clasificacion();
+
     ui->out_imc->setText(QString::number(imc, 'f', 2));
     ui->out_pesoAc->setText(QString::number(peso, 'f', 2) + " kg");
 
+    clasificarImc(imc, clasificacion);
+
     guardar();
+}
+
+void VentanaPrincipal::clasificarImc(float imc, QString clasificacion)
+{
+    // Sobreescribir etiqueta con la clasificacion del IMC
+    ui->out_clasificacion->setText(clasificacion);
+    ui->out_bar->setValue(imc);
+
+    if(imc < 16){
+        ui->out_clasificacion->setStyleSheet("color: rgb(176, 211, 205)");
+        ui->out_bar->setValue(ui->out_bar->minimum()+1);
+    }else if(imc >= 16 && imc < 18.5){
+        ui->out_clasificacion->setStyleSheet("color: rgb(76, 108, 148)");
+    }else if(imc >= 18.5 && imc < 25){
+        ui->out_clasificacion->setStyleSheet("color: rgb(117, 221, 119)");
+    }else if(imc >= 25 && imc < 30){
+        ui->out_clasificacion->setStyleSheet("color: rgb(220, 230, 130)");
+    }else if(imc >= 30 && imc < 40){
+        ui->out_clasificacion->setStyleSheet("color: rgb(254, 181, 70)");
+    }else if(imc >= 40){
+        ui->out_clasificacion->setStyleSheet("color: rgb(234, 68, 78)");
+        ui->out_bar->setValue(ui->out_bar->maximum());
+    }
+
+    ui->out_clasificacion->setVisible(true);
+
 }
 
 void VentanaPrincipal::guardar()
