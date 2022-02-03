@@ -49,16 +49,22 @@ void VentanaPrincipal::clasificarImc(float imc, QString clasificacion)
     if(imc < 16){
         ui->out_clasificacion->setStyleSheet("color: rgb(176, 211, 205)");
         ui->out_bar->setValue(ui->out_bar->minimum()+1);
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(176, 211, 205);}"));
     }else if(imc >= 16 && imc < 18.5){
         ui->out_clasificacion->setStyleSheet("color: rgb(76, 108, 148)");
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(76, 108, 148);}"));
     }else if(imc >= 18.5 && imc < 25){
         ui->out_clasificacion->setStyleSheet("color: rgb(117, 221, 119)");
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(117, 221, 119);}"));
     }else if(imc >= 25 && imc < 30){
         ui->out_clasificacion->setStyleSheet("color: rgb(220, 230, 130)");
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(220, 230, 130);}"));
     }else if(imc >= 30 && imc < 40){
         ui->out_clasificacion->setStyleSheet("color: rgb(254, 181, 70)");
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(254, 181, 70);}"));
     }else if(imc >= 40){
         ui->out_clasificacion->setStyleSheet("color: rgb(234, 68, 78)");
+        ui->out_bar->setStyleSheet(QString::fromUtf8("QProgressBar::chunk{background-color: rgb(234, 68, 78);}"));
         ui->out_bar->setValue(ui->out_bar->maximum());
     }
 
@@ -89,11 +95,16 @@ void VentanaPrincipal::guardar()
                 peso = datos.readLine();
                 // Buscar mayor y menor peso
                 pesoAc = peso.toFloat();
+                pesoMin = peso.toFloat();
+                pesoMax = peso.toFloat();
 
-                if(pesoAc > pesoMax){
+                if(pesoAc >= pesoMax){
                     pesoMax = pesoAc;
-                }else if(pesoAc < pesoMax){
+                    ui->out_pesoMax->setText(QString::number(pesoMax) + " kg");
+                }
+                if(pesoAc <= pesoMax){
                     pesoMin = pesoAc;
+                    ui->out_pesoMin->setText(QString::number(pesoMin) + " kg");
                 }
             }
         }
@@ -103,9 +114,6 @@ void VentanaPrincipal::guardar()
         datos << ui->in_peso->text() << endl;
         datos << "Altura: " << endl;
         datos << ui->in_altura->text() << endl << endl;
-
-        ui->out_pesoMax->setText(QString::number(pesoMax) + " kg");
-        ui->out_pesoMin->setText(QString::number(pesoMin) + " kg");
 
         ui->statusbar->showMessage("Datos almacenados correctamente!", 3000);
     }else{
