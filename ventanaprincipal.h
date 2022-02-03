@@ -1,3 +1,8 @@
+/*
+ * El icono del programa fue extraido de:
+ * <a href="https://www.freepik.es/vectores/fondo">Vector de Fondo creado por redgreystock - www.freepik.es</a>
+ * */
+
 #ifndef VENTANAPRINCIPAL_H
 #define VENTANAPRINCIPAL_H
 
